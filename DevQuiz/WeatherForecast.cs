@@ -1,6 +1,6 @@
 using System;
 
-namespace DevQuiz
+namespace DevQuiz.Web
 {
     public class WeatherForecast
     {
