@@ -11,34 +11,12 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using CourseManagement.Domain.Model;
 
-namespace DevQuiz.SharedKernel.Extensions
+namespace CourseManagement.Domain.Interfaces
 {
-    public static class List
+    public interface IRepository
     {
-        public static IList<TSource> Empty<TSource>() => new List<TSource>();
-        public static IList<TSource> Of<TSource>(params TSource[] items) => new List<TSource>(items);
-        public static IList<TSource> Of<TSource>(IEnumerable<TSource> collectionOfItems, params TSource[] items)
-        {
-            collectionOfItems ??= Array.Empty<TSource>().AsEnumerable();
-            var list = new List<TSource>(collectionOfItems);
-            list.AddRange(items);
-            return list;
-        }
-
-        public static IList<TSource> AddRange<TSource>(this IList<TSource> list, IEnumerable<TSource> items)
-        {
-            if (list == null)
-                return new List<TSource>(items ?? Array.Empty<TSource>());
-
-            if (items?.Any() != true)
-                return list;
-            foreach (var item in items)
-                list.Add(item);
-            return list;
-        }
+        Course GetCourseByName(string name);
     }
 }
