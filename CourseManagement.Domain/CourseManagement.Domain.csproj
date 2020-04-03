@@ -12,11 +12,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
-    <PackageReference Include="System.Util" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Quiz.SharedKernel\Quiz.SharedKernel.csproj" />
+    <ProjectReference Include="..\DevQuiz.SharedKernel\DevQuiz.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

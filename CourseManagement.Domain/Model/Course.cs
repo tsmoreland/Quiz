@@ -11,10 +11,13 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using Quiz.SharedKernel;
-using Quiz.SharedKernel.Extensions;
+using DevQuiz.SharedKernel;
+using DevQuiz.SharedKernel.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Quiz.CourseManagement.Domain.Model
@@ -36,9 +39,11 @@ namespace Quiz.CourseManagement.Domain.Model
             Name = name;
         }
 
+        [Required]
+        [MaxLength(255)]
         public string Name { get; private set; } = string.Empty;
         public IEnumerable<Question> Questions => QuestionModels.AsEnumerable();
-        private List<Question> QuestionModels { get; set; } = List.Empty<Question>();
+        private IList<Question> QuestionModels { get; set; } = List.Empty<Question>();
 
         public void AddQuestion(params Question[] questions)
         {
@@ -46,6 +51,15 @@ namespace Quiz.CourseManagement.Domain.Model
             // raise domain event
         }
 
-        public static Course None { get; } = new Course(Guid.Empty);
+        public static IEntityTypeConfiguration<Course> BuildConfiguration() => new CourseConfiguration();
+
+        internal class CourseConfiguration : IEntityTypeConfiguration<Course>
+        {
+            public void Configure(EntityTypeBuilder<Course> builder)
+            {
+                builder.Property(c => c.Name);
+                builder.Property(c => c.QuestionModels);
+            }
+        }
     }
 }
