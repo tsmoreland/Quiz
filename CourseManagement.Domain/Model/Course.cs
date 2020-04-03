@@ -13,12 +13,16 @@
 
 using DevQuiz.SharedKernel;
 using DevQuiz.SharedKernel.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace CourseManagement.Domain.Model
 {
-    public sealed class Course : EntityWithGuidId
+    public sealed partial class Course : EntityWithGuidId
     {
         private Course() : base(Guid.NewGuid())
         {
@@ -28,8 +32,27 @@ namespace CourseManagement.Domain.Model
             Name = name;
         }
 
+        [Required]
+        [MaxLength(255)]
         public string Name { get; private set; } = string.Empty;
-        public IList<Question> Questions { get; private set; } = List.Empty<Question>();
+        public IEnumerable<Question> Questions => QuestionModels.AsEnumerable();
+        private IList<Question> QuestionModels { get; set; } = List.Empty<Question>();
 
+        public void AddQuestion(params Question[] questions)
+        {
+            QuestionModels.AddRange(questions);
+            // raise domain event
+        }
+
+        public static IEntityTypeConfiguration<Course> BuildConfiguration() => new CourseConfiguration();
+
+        internal class CourseConfiguration : IEntityTypeConfiguration<Course>
+        {
+            public void Configure(EntityTypeBuilder<Course> builder)
+            {
+                builder.Property(c => c.Name);
+                builder.Property(c => c.QuestionModels);
+            }
+        }
     }
 }
