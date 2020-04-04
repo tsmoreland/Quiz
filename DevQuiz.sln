@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevQuiz.Web", "DevQuiz\DevQuiz.Web.csproj", "{93B96911-03ED-4FCA-8DF2-BD3C7AA1F6CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevQuiz.Web", "DevQuiz.Web\DevQuiz.Web.csproj", "{93B96911-03ED-4FCA-8DF2-BD3C7AA1F6CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKernel", "{70C7D97A-A763-448B-8FA8-AB3CE74365F5}"
 EndProject
