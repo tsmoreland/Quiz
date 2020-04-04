@@ -11,12 +11,18 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using CourseManagement.Domain.Model;
+using System.Collections.Generic;
+using System.Util;
+using System.Util.Results;
 
-namespace CourseManagement.Domain.Interfaces
+namespace DevQuiz.SharedKernel.Interfaces
 {
-    public interface IRepository
+    public interface IRepository<TEntity, TIdentifier>
     {
-        Course GetCourseByName(string name);
+        Maybe<TEntity> GetById(TIdentifier id);
+        IEnumerable<TEntity> GetAll(TIdentifier id);
+        CommandResult Add(TEntity entity);
+        CommandResult Update(TEntity entity);
+        CommandResult Remove(TEntity entity);
     }
 }
