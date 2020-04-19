@@ -11,26 +11,27 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using DevQuiz.SharedKernel;
-using System;
+using DevQuiz.CourseManagement.Domain.Model;
+using Microsoft.EntityFrameworkCore;
 
-namespace DevQuiz.CourseManagement.Domain.Model
+namespace DevQuiz.CourseManagement.Data
 {
-    public sealed class Answer : EntityWithGuidId
+    public class CourseContext : DbContext
     {
-        private Answer()
-            : base(Guid.NewGuid())
+        public CourseContext(DbContextOptions options)
+            : base(options)
         {
         }
 
-        public Answer(string content) : this()
+        public DbSet<Course> Courses { get; set; } = null!;
+        public DbSet<Question> Questions { get; set; } = null!;
+        public DbSet<Answer> Answers { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Content = content;
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration<Course>(Course.BuildConfiguration());
         }
-
-        public string Content { get; private set; } = string.Empty;
-        public static Answer Empty { get; } = new Answer();
-
-        public override string ToString() => Content;
     }
 }
