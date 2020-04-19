@@ -14,10 +14,13 @@
 
 using DevQuiz.SharedKernel;
 using DevQuiz.SharedKernel.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace CourseManagement.Domain.Model
+namespace DevQuiz.CourseManagement.Domain.Model
 {
     public sealed class Question : EntityWithGuidId
     {
@@ -27,8 +30,34 @@ namespace CourseManagement.Domain.Model
 
         public string Content { get; private set; } = string.Empty;
 
-        public Answer CorrectAnswer { get; private set; } = Answer.Empty;
-        public IList<Answer> Answers { get; private set; } = List.Empty<Answer>();
+        public Guid CorrectAnswerId { get; private set; } = Guid.Empty;
+        public IEnumerable<Answer> Answers => AnswerModels.AsEnumerable();
+        private IList<Answer> AnswerModels { get; set; } = List.Empty<Answer>();
 
+        public void AddAnswer(params Answer[] answers)
+        {
+            AnswerModels.AddRange(answers);
+            // raise domain event
+        }
+
+        public void SetCorrectAnswer(Guid id)
+        {
+            if (CorrectAnswerId == id)
+                return;
+            CorrectAnswerId = id;
+            // raise event
+        }
+
+        public static IEntityTypeConfiguration<Question> BuildConfiguration() => new QuestionConfiguration();
+
+        internal class QuestionConfiguration : IEntityTypeConfiguration<Question>
+        {
+            public void Configure(EntityTypeBuilder<Question> builder)
+            {
+                builder.Property(q => q.Content);
+                builder.Property(q => q.CorrectAnswerId);
+                builder.Property(q => q.AnswerModels);
+            }
+        }
     }
 }

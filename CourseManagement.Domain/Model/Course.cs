@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace CourseManagement.Domain.Model
+namespace DevQuiz.CourseManagement.Domain.Model
 {
     public sealed partial class Course : EntityWithGuidId
     {
