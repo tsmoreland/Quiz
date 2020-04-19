@@ -12,48 +12,27 @@
 // 
 
 
-using Quiz.SharedKernel;
-using Quiz.SharedKernel.Extensions;
+using DevQuiz.SharedKernel;
+using DevQuiz.SharedKernel.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Quiz.CourseManagement.Domain.Model
+namespace DevQuiz.CourseManagement.Domain.Model
 {
     public sealed class Question : EntityWithGuidId
     {
         private Question() : base(Guid.NewGuid())
         {
         }
-        /// <summary>constructor for None only</summary>
-        private Question(Guid id) : base(id)
-        {
-            if (id != Guid.Empty)
-                throw new ArgumentException("constructor intented for none entry only");
-            Content = string.Empty;
-        }
-        public Question(string content, Answer correctAnswer)
-        {
-            Content = content;
-            AnswerModels.Add(correctAnswer);
-        }
-
 
         public string Content { get; private set; } = string.Empty;
 
-        public Guid CourseId { get; private set; } = Guid.Empty;
-
-        public Course Course { get; private set; } = Course.None;
-
-        public void Deconstruct(out string content, out Guid courseId, out Course course)
-        {
-            content = Content;
-            courseId = CourseId;
-            course = Course;
-        }
-
+        public Guid CorrectAnswerId { get; private set; } = Guid.Empty;
         public IEnumerable<Answer> Answers => AnswerModels.AsEnumerable();
-        private List<Answer> AnswerModels { get; set; } = List.Empty<Answer>();
+        private IList<Answer> AnswerModels { get; set; } = List.Empty<Answer>();
 
         public void AddAnswer(params Answer[] answers)
         {
@@ -61,6 +40,24 @@ namespace Quiz.CourseManagement.Domain.Model
             // raise domain event
         }
 
-        public static Question None { get; } = new Question(Guid.Empty);
+        public void SetCorrectAnswer(Guid id)
+        {
+            if (CorrectAnswerId == id)
+                return;
+            CorrectAnswerId = id;
+            // raise event
+        }
+
+        public static IEntityTypeConfiguration<Question> BuildConfiguration() => new QuestionConfiguration();
+
+        internal class QuestionConfiguration : IEntityTypeConfiguration<Question>
+        {
+            public void Configure(EntityTypeBuilder<Question> builder)
+            {
+                builder.Property(q => q.Content);
+                builder.Property(q => q.CorrectAnswerId);
+                builder.Property(q => q.AnswerModels);
+            }
+        }
     }
 }

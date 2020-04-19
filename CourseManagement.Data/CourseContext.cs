@@ -11,14 +11,14 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using Quiz.CourseManagement.Domain.Model;
+using DevQuiz.CourseManagement.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Quiz.CourseManagement.Data
+namespace DevQuiz.CourseManagement.Data
 {
     public class CourseContext : DbContext
     {
-        public CourseContext(DbContextOptions<CourseContext> options)
+        public CourseContext(DbContextOptions options)
             : base(options)
         {
         }
@@ -29,36 +29,9 @@ namespace Quiz.CourseManagement.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("CourseManagement");
-
-            var answerEntity = modelBuilder.Entity<Answer>();
-            answerEntity.HasKey(nameof(Answer.Id));
-            answerEntity
-                .HasOne(a => a.Question)
-                .WithMany("AnswerModels")
-                .HasForeignKey(a => a.QuestionId)
-                .IsRequired();
-
-            var questionEntity = modelBuilder.Entity<Question>();
-            questionEntity.HasKey(q => q.Id);
-            questionEntity.HasMany<Answer>("AnswerModels");
-            questionEntity.HasIndex(q => q.Content);
-            questionEntity.Ignore(q => q.Answers);
-            questionEntity.Property(q => q.Content).HasMaxLength(2048).IsRequired();
-            questionEntity
-                .HasOne(q => q.Course)
-                .WithMany("QuestionModels")
-                .HasForeignKey(q => q.CourseId)
-                .IsRequired();
-
-            var courseEntity = modelBuilder.Entity<Course>();
-            courseEntity.HasKey(c => c.Id);
-            courseEntity.HasIndex(c => c.Name);
-            courseEntity.Property(c => c.Name).HasMaxLength(256).IsRequired();
-            courseEntity.Ignore(c => c.Questions);
-            courseEntity.HasMany<Question>("QuestionModels");
-
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration<Course>(Course.BuildConfiguration());
         }
     }
 }

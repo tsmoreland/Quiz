@@ -20,19 +20,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Quiz.CourseManagement.Domain.Model
+namespace DevQuiz.CourseManagement.Domain.Model
 {
     public sealed partial class Course : EntityWithGuidId
     {
         private Course() : base(Guid.NewGuid())
         {
-        }
-        /// <summary>intended for construction of None only</summary>
-        private Course(Guid id) : base(id)
-        {
-            if (id != Guid.Empty)
-                throw new ArgumentException("constructor intended only for None instance");
-            Name = string.Empty;
         }
         public Course(string name) : this()
         {
