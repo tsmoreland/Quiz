@@ -11,10 +11,10 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using DevQuiz.CourseManagement.Domain.Model;
+using Quiz.CourseManagement.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevQuiz.CourseManagement.Data
+namespace Quiz.CourseManagement.Data
 {
     public class CourseContext : DbContext
     {

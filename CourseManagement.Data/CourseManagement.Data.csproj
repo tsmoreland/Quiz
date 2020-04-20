@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>DevQuiz.CourseManagement.Data</RootNamespace>
-    <AssemblyName>DevQuiz.CourseManagement.Data</AssemblyName>
+    <RootNamespace>Quiz.CourseManagement.Data</RootNamespace>
+    <AssemblyName>Quiz.CourseManagement.Data</AssemblyName>
     <Nullable>enable</Nullable>
     <Authors>Terry Moreland</Authors>
-    <Product>DevQuiz</Product>
+    <Product>Quiz</Product>
   </PropertyGroup>
 
   <ItemGroup>

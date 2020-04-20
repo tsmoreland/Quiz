@@ -13,7 +13,7 @@
 
 using System;
 
-namespace DevQuiz.SharedKernel
+namespace Quiz.SharedKernel
 {
     public class EntityWithGuidId : Entity<Guid>
     {
