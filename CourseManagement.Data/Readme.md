@@ -32,3 +32,10 @@
 
 - one to many should be defined on both ends of the model, item with List<> should have HasMany(item => item.Property) while target should have HasOne(item = item.Parent).WithMany(parent => parent.Children).HasForeignKey(item => ParentId).IsRequired()
   is required may be optional here if it's 0 to many.  Note if we're hiding the list then the WithMany will use a string naming the parent property (as it can't use lambda syntax due to parent property being privete)
+
+  ## Moving from hard coded to injected
+
+  1. add constructor to context taking DbContextOptions<DataContext> options where DataContext is the class name 
+  2. in Startup.cs or whereever services can be configured add services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionName")));  Making sure to hav using Microsoft.EntityFrameworkCore in namespaces or
+  the UseSqlServer won't be found
+  3. in appsettings.json add root level "ConnectionStrings" and an item name "ConnectionName" with the value of the connection string
