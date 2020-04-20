@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Quiz.CourseManagement.Data.Migrations
+namespace DevQuiz.CourseManagement.Data.Migrations
 {
     public partial class Initial : Migration
     {
