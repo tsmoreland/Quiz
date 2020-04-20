@@ -18,7 +18,7 @@
 - add class inheriting from DbContext to data project (will be changed later)
 - override OnConfiguring and add 
 	```
-	optionsBuilder.UseSqlServer(@"Server = (localdb)\mssqllocaldb; Database = DevQuizApp; Trusted_Connection = True; ");
+	optionsBuilder.UseSqlServer(@"Server = (localdb)\mssqllocaldb; Database = QuizApp; Trusted_Connection = True; ");
 	```
 - setup a few model classes in domain project and add DbSet<Model> entries for them in DbContext
 - if necessary override OnModelCreating and configure the objects with fluent api, this is preferred over attribute based approach directly on models except for a few places where there may be overlap between UI and database like Required and MaxLength

@@ -13,7 +13,7 @@
 
 using System;
 
-namespace DevQuiz.SharedKernel
+namespace Quiz.SharedKernel
 {
     public abstract class Entity<TIdentifier> : IEquatable<Entity<TIdentifier>>
     {

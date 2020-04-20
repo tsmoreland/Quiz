@@ -1,6 +1,6 @@
 {
-  "short_name": "DevQuiz",
-  "name": "DevQuiz",
+  "short_name": "Quiz",
+  "name": "Quiz",
   "icons": [
     {
       "src": "favicon.ico",

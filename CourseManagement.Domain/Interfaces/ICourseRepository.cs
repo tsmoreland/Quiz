@@ -11,11 +11,11 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using DevQuiz.CourseManagement.Domain.Model;
-using DevQuiz.SharedKernel.Interfaces;
+using Quiz.CourseManagement.Domain.Model;
+using Quiz.SharedKernel.Interfaces;
 using System.Runtime.CompilerServices;
 
-namespace DevQuiz.CourseManagement.Domain.Interfaces
+namespace Quiz.CourseManagement.Domain.Interfaces
 {
     public interface ICourseRepository : IRepository<Course, string>
     {

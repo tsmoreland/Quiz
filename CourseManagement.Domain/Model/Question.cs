@@ -12,13 +12,13 @@
 // 
 
 
-using DevQuiz.SharedKernel;
-using DevQuiz.SharedKernel.Extensions;
+using Quiz.SharedKernel;
+using Quiz.SharedKernel.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DevQuiz.CourseManagement.Domain.Model
+namespace Quiz.CourseManagement.Domain.Model
 {
     public sealed class Question : EntityWithGuidId
     {
