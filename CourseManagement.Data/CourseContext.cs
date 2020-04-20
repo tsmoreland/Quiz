@@ -18,20 +18,49 @@ namespace DevQuiz.CourseManagement.Data
 {
     public class CourseContext : DbContext
     {
-        public CourseContext(DbContextOptions options)
-            : base(options)
-        {
-        }
-
         public DbSet<Course> Courses { get; set; } = null!;
         public DbSet<Question> Questions { get; set; } = null!;
         public DbSet<Answer> Answers { get; set; } = null!;
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(
+                @"Server = (localdb)\mssqllocaldb; Database = DevQuizApp; Trusted_Connection = True; ");
+
+            base.OnConfiguring(optionsBuilder);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.HasDefaultSchema("CourseManagement");
 
-            modelBuilder.ApplyConfiguration<Course>(Course.BuildConfiguration());
+            var answerEntity = modelBuilder.Entity<Answer>();
+            answerEntity.HasKey(nameof(Answer.Id));
+            answerEntity
+                .HasOne(a => a.Question)
+                .WithMany("AnswerModels")
+                .HasForeignKey(a => a.QuestionId)
+                .IsRequired();
+
+            var questionEntity = modelBuilder.Entity<Question>();
+            questionEntity.HasKey(q => q.Id);
+            questionEntity.HasMany<Answer>("AnswerModels");
+            questionEntity.HasIndex(q => q.Content);
+            questionEntity.Ignore(q => q.Answers);
+            questionEntity.Property(q => q.Content).HasMaxLength(2048).IsRequired();
+            questionEntity
+                .HasOne(q => q.Course)
+                .WithMany("QuestionModels")
+                .HasForeignKey(q => q.CourseId)
+                .IsRequired();
+
+            var courseEntity = modelBuilder.Entity<Course>();
+            courseEntity.HasKey(c => c.Id);
+            courseEntity.HasIndex(c => c.Name);
+            courseEntity.Property(c => c.Name).HasMaxLength(256).IsRequired();
+            courseEntity.Ignore(c => c.Questions);
+            courseEntity.HasMany<Question>("QuestionModels");
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

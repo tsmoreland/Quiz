@@ -29,6 +29,9 @@ namespace DevQuiz.CourseManagement.Domain.Model
         }
 
         public string Content { get; private set; } = string.Empty;
+        public Guid QuestionId { get; private set; } = Guid.Empty;
+        public Question Question { get; private set; } = Question.None;
+
         public static Answer Empty { get; } = new Answer();
 
         public override string ToString() => Content;
