@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Util;
 using System.Util.Results;
 
-namespace Quiz.SharedKernel.Interfaces
+namespace DevQuiz.SharedKernel.Interfaces
 {
     public interface IRepository<TEntity, TIdentifier>
     {

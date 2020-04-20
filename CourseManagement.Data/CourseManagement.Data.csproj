@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CourseManagement.Domain\CourseManagement.Domain.csproj" />
-    <ProjectReference Include="..\DevQuiz.SharedKernel\DevQuiz.SharedKernel.csproj" />
+    <ProjectReference Include="..\Quiz.SharedKernel\Quiz.SharedKernel.csproj" />
   </ItemGroup>
 
   <ItemGroup>
