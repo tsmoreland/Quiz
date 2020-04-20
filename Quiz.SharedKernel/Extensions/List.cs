@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DevQuiz.SharedKernel.Extensions
+namespace Quiz.SharedKernel.Extensions
 {
     public static class List
     {

@@ -1,4 +1,4 @@
-using DevQuiz.CourseManagement.Data;
+using Quiz.CourseManagement.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevQuiz.Web
+namespace Quiz.Web
 {
     public class Startup
     {
