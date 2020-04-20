@@ -13,11 +13,8 @@
 
 using DevQuiz.SharedKernel;
 using DevQuiz.SharedKernel.Extensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace DevQuiz.CourseManagement.Domain.Model
@@ -27,16 +24,21 @@ namespace DevQuiz.CourseManagement.Domain.Model
         private Course() : base(Guid.NewGuid())
         {
         }
+        /// <summary>intended for construction of None only</summary>
+        private Course(Guid id) : base(id)
+        {
+            if (id != Guid.Empty)
+                throw new ArgumentException("constructor intended only for None instance");
+            Name = string.Empty;
+        }
         public Course(string name) : this()
         {
             Name = name;
         }
 
-        [Required]
-        [MaxLength(255)]
         public string Name { get; private set; } = string.Empty;
         public IEnumerable<Question> Questions => QuestionModels.AsEnumerable();
-        private IList<Question> QuestionModels { get; set; } = List.Empty<Question>();
+        private List<Question> QuestionModels { get; set; } = List.Empty<Question>();
 
         public void AddQuestion(params Question[] questions)
         {
@@ -44,15 +46,6 @@ namespace DevQuiz.CourseManagement.Domain.Model
             // raise domain event
         }
 
-        public static IEntityTypeConfiguration<Course> BuildConfiguration() => new CourseConfiguration();
-
-        internal class CourseConfiguration : IEntityTypeConfiguration<Course>
-        {
-            public void Configure(EntityTypeBuilder<Course> builder)
-            {
-                builder.Property(c => c.Name);
-                builder.Property(c => c.QuestionModels);
-            }
-        }
+        public static Course None { get; } = new Course(Guid.Empty);
     }
 }

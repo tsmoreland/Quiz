@@ -19,9 +19,9 @@ namespace DevQuiz.SharedKernel.Extensions
 {
     public static class List
     {
-        public static IList<TSource> Empty<TSource>() => new List<TSource>();
-        public static IList<TSource> Of<TSource>(params TSource[] items) => new List<TSource>(items);
-        public static IList<TSource> Of<TSource>(IEnumerable<TSource> collectionOfItems, params TSource[] items)
+        public static List<TSource> Empty<TSource>() => new List<TSource>();
+        public static List<TSource> Of<TSource>(params TSource[] items) => new List<TSource>(items);
+        public static List<TSource> Of<TSource>(IEnumerable<TSource> collectionOfItems, params TSource[] items)
         {
             collectionOfItems ??= Array.Empty<TSource>().AsEnumerable();
             var list = new List<TSource>(collectionOfItems);
