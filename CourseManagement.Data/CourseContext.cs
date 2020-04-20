@@ -18,17 +18,15 @@ namespace DevQuiz.CourseManagement.Data
 {
     public class CourseContext : DbContext
     {
+        public CourseContext(DbContextOptions<CourseContext> options)
+            : base(options)
+        {
+        }
+
         public DbSet<Course> Courses { get; set; } = null!;
         public DbSet<Question> Questions { get; set; } = null!;
         public DbSet<Answer> Answers { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                @"Server = (localdb)\mssqllocaldb; Database = DevQuizApp; Trusted_Connection = True; ");
-
-            base.OnConfiguring(optionsBuilder);
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("CourseManagement");
