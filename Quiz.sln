@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.Web", "Quiz.Web\Quiz.Web.csproj", "{93B96911-03ED-4FCA-8DF2-BD3C7AA1F6CA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKernel", "{70C7D97A-A763-448B-8FA8-AB3CE74365F5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.SharedKernel", "Quiz.SharedKernel\Quiz.SharedKernel.csproj", "{A9A624F9-D45C-4E58-9541-2BE7606A8892}"
@@ -13,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CourseManagement", "CourseM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManagement.Domain", "CourseManagement.Domain\CourseManagement.Domain.csproj", "{280A2C59-CBC2-48A0-B5D7-A1E456CA233A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManagement.Data", "CourseManagement.Data\CourseManagement.Data.csproj", "{D3960880-15E6-4D26-BE55-FA50354E9463}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManagement.Data", "CourseManagement.Data\CourseManagement.Data.csproj", "{D3960880-15E6-4D26-BE55-FA50354E9463}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.WebApi", "Quiz.WebApi\Quiz.WebApi.csproj", "{16EAE40B-30C9-4A83-9CDF-5E11435480D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93B96911-03ED-4FCA-8DF2-BD3C7AA1F6CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93B96911-03ED-4FCA-8DF2-BD3C7AA1F6CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93B96911-03ED-4FCA-8DF2-BD3C7AA1F6CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93B96911-03ED-4FCA-8DF2-BD3C7AA1F6CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A9A624F9-D45C-4E58-9541-2BE7606A8892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A9A624F9-D45C-4E58-9541-2BE7606A8892}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9A624F9-D45C-4E58-9541-2BE7606A8892}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +33,10 @@ Global
 		{D3960880-15E6-4D26-BE55-FA50354E9463}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3960880-15E6-4D26-BE55-FA50354E9463}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3960880-15E6-4D26-BE55-FA50354E9463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16EAE40B-30C9-4A83-9CDF-5E11435480D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16EAE40B-30C9-4A83-9CDF-5E11435480D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16EAE40B-30C9-4A83-9CDF-5E11435480D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16EAE40B-30C9-4A83-9CDF-5E11435480D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
