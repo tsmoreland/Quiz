@@ -45,6 +45,13 @@ namespace Quiz.CourseManagement.Domain.Model
 
         public Course Course { get; private set; } = Course.None;
 
+        public void Deconstruct(out string content, out Guid courseId, out Course course)
+        {
+            content = Content;
+            courseId = CourseId;
+            course = Course;
+        }
+
         public IEnumerable<Answer> Answers => AnswerModels.AsEnumerable();
         private List<Answer> AnswerModels { get; set; } = List.Empty<Answer>();
 
