@@ -13,7 +13,6 @@
 
 
 using Quiz.SharedKernel;
-using Quiz.SharedKernel.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +52,7 @@ namespace Quiz.CourseManagement.Domain.Model
         }
 
         public IEnumerable<Answer> Answers => AnswerModels.AsEnumerable();
-        private List<Answer> AnswerModels { get; set; } = List.Empty<Answer>();
+        private IList<Answer> AnswerModels { get; set; } = List.Empty<Answer>();
 
         public void AddAnswer(params Answer[] answers)
         {

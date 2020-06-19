@@ -12,10 +12,12 @@
 // 
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Quiz.SharedKernel
 {
-    public abstract class Entity<TIdentifier> : IEquatable<Entity<TIdentifier>>
+    public abstract class Entity<TIdentifier> : IEquatable<Entity<TIdentifier>>, IEqualityComparer<TIdentifier>
     {
 
         protected Entity(TIdentifier id)
@@ -30,9 +32,15 @@ namespace Quiz.SharedKernel
         public TIdentifier Id { get; protected set; } 
 
         public override int GetHashCode() => Id?.GetHashCode() ?? 0;
-        public override bool Equals(object? obj) => obj is Entity<TIdentifier> entity ? Equals(entity) : base.Equals(obj);
-        public bool Equals(Entity<TIdentifier> other) =>
+        public override bool Equals(object? obj) => obj is Entity<TIdentifier> entity && Equals(entity);
+        public bool Equals(Entity<TIdentifier>? other) =>
             ReferenceEquals(other, this) || other is object && Id?.Equals(other.Id) == true;
+
+        public bool Equals([AllowNull] TIdentifier x, [AllowNull] TIdentifier y) =>
+            ReferenceEquals(x, y) || 
+            (x is object && x.Equals(y)) || 
+            (y is object && y.Equals(x));
+        public int GetHashCode(TIdentifier obj) => obj is object ? obj.GetHashCode() : 0;
 
         protected abstract TIdentifier AnonymousId { get; }
     }

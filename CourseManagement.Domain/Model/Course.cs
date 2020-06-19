@@ -12,7 +12,6 @@
 // 
 
 using Quiz.SharedKernel;
-using Quiz.SharedKernel.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +37,7 @@ namespace Quiz.CourseManagement.Domain.Model
 
         public string Name { get; private set; } = string.Empty;
         public IEnumerable<Question> Questions => QuestionModels.AsEnumerable();
-        private List<Question> QuestionModels { get; set; } = List.Empty<Question>();
+        private IList<Question> QuestionModels { get; set; } = List.Empty<Question>();
 
         public void AddQuestion(params Question[] questions)
         {
