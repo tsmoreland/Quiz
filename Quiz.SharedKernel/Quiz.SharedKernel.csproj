@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Util" Version="1.0.3" />
+    <PackageReference Include="Moreland.CSharp.Util" Version="1.1.0" />
   </ItemGroup>
 
 </Project>

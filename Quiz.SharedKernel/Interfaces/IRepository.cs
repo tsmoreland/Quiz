@@ -12,8 +12,8 @@
 // 
 
 using System.Collections.Generic;
-using System.Util;
-using System.Util.Results;
+using Moreland.CSharp.Util;
+using Moreland.CSharp.Util.Results;
 
 namespace Quiz.SharedKernel.Interfaces
 {
