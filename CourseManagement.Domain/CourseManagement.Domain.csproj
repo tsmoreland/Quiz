@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
-    <PackageReference Include="Moreland.CSharp.Util" Version="1.1.0" />
+    <PackageReference Include="Moreland.CSharp.Util" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
