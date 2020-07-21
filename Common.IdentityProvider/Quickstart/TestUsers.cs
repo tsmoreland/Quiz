@@ -29,33 +29,33 @@ namespace IdentityServerHost.Quickstart.UI
                 {
                     new TestUser
                     {
-                        SubjectId = "818727",
-                        Username = "alice",
-                        Password = "alice",
+                        SubjectId = "82A84132-9C76-48AA-B4C0-1114A33EAE5B",
+                        Username = "tsmoreland",
+                        Password = "password",
                         Claims =
                         {
-                            new Claim(JwtClaimTypes.Name, "Alice Smith"),
-                            new Claim(JwtClaimTypes.GivenName, "Alice"),
-                            new Claim(JwtClaimTypes.FamilyName, "Smith"),
-                            new Claim(JwtClaimTypes.Email, "AliceSmith@email.com"),
+                            new Claim(JwtClaimTypes.Name, "Terry Moreland"),
+                            new Claim(JwtClaimTypes.GivenName, "Terry"),
+                            new Claim(JwtClaimTypes.FamilyName, "Moreland"),
+                            new Claim(JwtClaimTypes.Email, "terry.s.moreland@gmail.com"),
                             new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
-                            new Claim(JwtClaimTypes.WebSite, "http://alice.com"),
+                            new Claim(JwtClaimTypes.WebSite, "http://github.com/tsmoreland"),
                             new Claim(JwtClaimTypes.Address, JsonSerializer.Serialize(address), IdentityServerConstants.ClaimValueTypes.Json)
                         }
                     },
                     new TestUser
                     {
-                        SubjectId = "88421113",
-                        Username = "bob",
-                        Password = "bob",
+                        SubjectId = "82A84132-9C76-48AA-B4C0-1114A33EAE5B",
+                        Username = "batman",
+                        Password = "password",
                         Claims =
                         {
-                            new Claim(JwtClaimTypes.Name, "Bob Smith"),
-                            new Claim(JwtClaimTypes.GivenName, "Bob"),
-                            new Claim(JwtClaimTypes.FamilyName, "Smith"),
-                            new Claim(JwtClaimTypes.Email, "BobSmith@email.com"),
+                            new Claim(JwtClaimTypes.Name, "Bruce Wayne"),
+                            new Claim(JwtClaimTypes.GivenName, "Bruce"),
+                            new Claim(JwtClaimTypes.FamilyName, "Wayne"),
+                            new Claim(JwtClaimTypes.Email, "bruce.wayne@wayneenterprises.com"),
                             new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
-                            new Claim(JwtClaimTypes.WebSite, "http://bob.com"),
+                            new Claim(JwtClaimTypes.WebSite, "http://127.0.0.1"),
                             new Claim(JwtClaimTypes.Address, JsonSerializer.Serialize(address), IdentityServerConstants.ClaimValueTypes.Json)
                         }
                     }
