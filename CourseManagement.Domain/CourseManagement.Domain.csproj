@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>8</LangVersion>
-    <Nullable>enable</Nullable>
+	<TargetFramework>net6</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
     <RootNamespace>Quiz.CourseManagement.Domain</RootNamespace>
     <AssemblyName>Quiz.CourseManagement.Domain</AssemblyName>
     <Authors>Terry Moreland</Authors>
@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
-    <PackageReference Include="Moreland.CSharp.Util" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Moreland.CSharp.Util" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>

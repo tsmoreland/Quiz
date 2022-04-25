@@ -12,9 +12,8 @@
 // 
 
 using Quiz.SharedKernel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Quiz.SharedKernel.Extensions;
+using CollectionExtensions = System.Linq.CollectionExtensions;
 
 namespace Quiz.CourseManagement.Domain.Model
 {
@@ -41,7 +40,7 @@ namespace Quiz.CourseManagement.Domain.Model
 
         public void AddQuestion(params Question[] questions)
         {
-            QuestionModels.AddRange(questions);
+            CollectionExtensions.AddRange(QuestionModels, questions);
             // raise domain event
         }
 
