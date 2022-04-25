@@ -11,17 +11,24 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using DevQuiz.SharedKernel;
-using DevQuiz.SharedKernel.Extensions;
+using Quiz.SharedKernel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace CourseManagement.Domain.Model
+namespace Quiz.CourseManagement.Domain.Model
 {
-    public sealed class Course : EntityWithGuidId
+    public sealed partial class Course : EntityWithGuidId
     {
         private Course() : base(Guid.NewGuid())
         {
+        }
+        /// <summary>intended for construction of None only</summary>
+        private Course(Guid id) : base(id)
+        {
+            if (id != Guid.Empty)
+                throw new ArgumentException("constructor intended only for None instance");
+            Name = string.Empty;
         }
         public Course(string name) : this()
         {
@@ -29,7 +36,15 @@ namespace CourseManagement.Domain.Model
         }
 
         public string Name { get; private set; } = string.Empty;
-        public IList<Question> Questions { get; private set; } = List.Empty<Question>();
+        public IEnumerable<Question> Questions => QuestionModels.AsEnumerable();
+        private IList<Question> QuestionModels { get; set; } = List.Empty<Question>();
 
+        public void AddQuestion(params Question[] questions)
+        {
+            QuestionModels.AddRange(questions);
+            // raise domain event
+        }
+
+        public static Course None { get; } = new Course(Guid.Empty);
     }
 }

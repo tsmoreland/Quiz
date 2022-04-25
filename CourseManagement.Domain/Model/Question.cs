@@ -12,23 +12,54 @@
 // 
 
 
-using DevQuiz.SharedKernel;
-using DevQuiz.SharedKernel.Extensions;
+using Quiz.SharedKernel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace CourseManagement.Domain.Model
+namespace Quiz.CourseManagement.Domain.Model
 {
     public sealed class Question : EntityWithGuidId
     {
         private Question() : base(Guid.NewGuid())
         {
         }
+        /// <summary>constructor for None only</summary>
+        private Question(Guid id) : base(id)
+        {
+            if (id != Guid.Empty)
+                throw new ArgumentException("constructor intented for none entry only");
+            Content = string.Empty;
+        }
+        public Question(string content, Answer correctAnswer)
+        {
+            Content = content;
+            AnswerModels.Add(correctAnswer);
+        }
+
 
         public string Content { get; private set; } = string.Empty;
 
-        public Answer CorrectAnswer { get; private set; } = Answer.Empty;
-        public IList<Answer> Answers { get; private set; } = List.Empty<Answer>();
+        public Guid CourseId { get; private set; } = Guid.Empty;
 
+        public Course Course { get; private set; } = Course.None;
+
+        public void Deconstruct(out string content, out Guid courseId, out Course course)
+        {
+            content = Content;
+            courseId = CourseId;
+            course = Course;
+        }
+
+        public IEnumerable<Answer> Answers => AnswerModels.AsEnumerable();
+        private IList<Answer> AnswerModels { get; set; } = List.Empty<Answer>();
+
+        public void AddAnswer(params Answer[] answers)
+        {
+            AnswerModels.AddRange(answers);
+            // raise domain event
+        }
+
+        public static Question None { get; } = new Question(Guid.Empty);
     }
 }

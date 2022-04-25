@@ -11,10 +11,10 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
-using DevQuiz.SharedKernel;
+using Quiz.SharedKernel;
 using System;
 
-namespace CourseManagement.Domain.Model
+namespace Quiz.CourseManagement.Domain.Model
 {
     public sealed class Answer : EntityWithGuidId
     {
@@ -29,6 +29,19 @@ namespace CourseManagement.Domain.Model
         }
 
         public string Content { get; private set; } = string.Empty;
+        public Guid QuestionId { get; private set; } = Guid.Empty;
+        public Question Question { get; private set; } = Question.None;
+        public bool IsCorrect { get; private set; } = false;
+
+        public void Deconstruct(out Guid id, out string content, out Guid questionId, out Question question, out bool isCorrect)
+        {
+            id = Id;
+            content = Content;
+            questionId = QuestionId;
+            question = Question;
+            isCorrect = IsCorrect;
+        }
+
         public static Answer Empty { get; } = new Answer();
 
         public override string ToString() => Content;
