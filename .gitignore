@@ -339,4 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-Quiz.WebApi/wwwroot/lib
+*/wwwroot/lib
